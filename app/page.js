@@ -16,14 +16,15 @@ export default function Home() {
 
   return (
     <div className='main'>
-      <Button
+      <div className='main-contents'>
+              <Button
       variant='outlined'
-      sx={{color:'black', height:'4rem'}}
+      sx={{color:'black', height:'3rem'}}
       >Sign up</Button>
 
       <Button
       variant='outlined'
-      sx={{color:'black', height:'4rem'}}
+      sx={{color:'black', height:'3rem', width:'100%'}}
       >Sign In</Button>
 
       <Box
@@ -31,7 +32,7 @@ export default function Home() {
         mt:4, 
         display:'flex',
         flexDirection:'row',
-        height: '4rem',
+        height: '3rem',
         border: '1px solid #1976d2',
         borderRadius: '4px',
         overflow:'hidden'
@@ -59,7 +60,8 @@ export default function Home() {
       onClick={handleGoogleSignIn}
       sx={{
           height: '100%',
-          fontSize: '1.1rem',
+          width: '100%',
+          fontSize: '1rem',
           textTransform: 'none',
           backgroundColor: '#1976d2',
           color: 'white',
@@ -67,16 +69,13 @@ export default function Home() {
           border: 'none',
           '&:hover': {
           backgroundColor: '#1565c0',
-    },
+       },
       }}
       >
           Sign in WIth Google
       </Button>
       </Box>
-
-      <button>
-        Forgot
-      </button>
+      </div>
     </div>
   );
 }
