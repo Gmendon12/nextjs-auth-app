@@ -55,8 +55,7 @@ export default function Home() {
          />
        </Box>
       <Button 
-      variant = 'contained' 
-      style={{border:'none'}}
+      variant = 'contained'
       onClick={handleGoogleSignIn}
       sx={{
           height: '100%',
@@ -65,14 +64,19 @@ export default function Home() {
           backgroundColor: '#1976d2',
           color: 'white',
           borderRadius: 0,
-            '&:hover': {
-            backgroundColor: '#1565c0',
-          },
+          border: 'none',
+          '&:hover': {
+          backgroundColor: '#1565c0',
+    },
       }}
       >
           Sign in WIth Google
       </Button>
       </Box>
+
+      <button>
+        Forgot
+      </button>
     </div>
   );
 }
