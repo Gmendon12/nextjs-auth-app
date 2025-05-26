@@ -32,26 +32,24 @@ export default function Home() {
         display:'flex',
         flexDirection:'row',
         height: '4rem',
-        border: '1px solid #1976d2'
-
+        border: '1px solid #1976d2',
+        borderRadius: '4px',
+        overflow:'hidden'
       }}
       >
        <Box 
        sx={{
-        border: '1px solid #1976d2',
-        borderRight: 'none',
-        borderTopLeftRadius: '4px',
-        borderBottomLeftRadius: '4px',
-        padding: '6px 10px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
+            backgroundColor: '#fff',
+            padding: '0 1rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRight: '1px solid #1976d2',
        }}
        >
          <Image 
          src="/google.png" 
-         alt="not available" 
-         className="google-icon"
+         alt="not available"
          width={32} 
          height={32}
          />
@@ -61,15 +59,15 @@ export default function Home() {
       style={{border:'none'}}
       onClick={handleGoogleSignIn}
       sx={{
-        width: '300px', 
-        fontSize:'1.1rem', 
-        height:'100%',
-        textTransform: 'primary.main',
-        border: '1px solid #1976d2',
-        borderTopLeftRadius: 0,
-        borderBottomLeftRadius: 0,
-        borderTopRightRadius: '4px',
-        borderBottomRightRadius: '4px'
+          height: '100%',
+          fontSize: '1.1rem',
+          textTransform: 'none',
+          backgroundColor: '#1976d2',
+          color: 'white',
+          borderRadius: 0,
+            '&:hover': {
+            backgroundColor: '#1565c0',
+          },
       }}
       >
           Sign in WIth Google
