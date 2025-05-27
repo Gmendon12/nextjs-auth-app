@@ -16,6 +16,7 @@ export default function Home() {
   }
    
    const handleGoogleSignIn = async () =>{
+    setLoading(true)
       try {
           const result = await signInWithPopup(auth ,provider)
           console.log(result.user)
@@ -85,6 +86,7 @@ export default function Home() {
       <Button 
       variant = 'contained'
       onClick={handleGoogleSignIn}
+      disabled={loading}
       sx={{
           height: '100%',
           width: '100%',
