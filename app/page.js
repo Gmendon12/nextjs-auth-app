@@ -1,6 +1,6 @@
 'use client';
 import {auth, provider} from './lib/firebase'
-import {signInWithPopup} from 'firebase/auth';
+import {signInWithPopup, getAuth, GoogleAuthProvider} from 'firebase/auth';
 import {Button, Box, Typography} from '@mui/material'
 import Image from 'next/image'
 
@@ -10,7 +10,11 @@ export default function Home() {
           const result = await signInWithPopup(auth ,provider)
           console.log(result.user)
       } catch (error) {
-          console.error(error)
+          if(error.code === 'auth/popup-closed-by-user'){
+            console.log("User closed the popup before completing the sign-in")
+          } else{
+            console.error("Sign in error", error)
+          }
       }
     }
 
