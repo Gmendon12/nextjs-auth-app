@@ -1,20 +1,43 @@
 'use client';
 import {auth, provider} from './lib/firebase'
 import {signInWithPopup, getAuth, GoogleAuthProvider} from 'firebase/auth';
-import {Button, Box, Typography} from '@mui/material'
+import {Button, Box, Snackbar, Alert} from '@mui/material'
 import Image from 'next/image'
+import {useState} from 'react'
+import {useRouter} from 'next/navigation';
 
 export default function Home() {
+   const router = useRouter()
+   const[loading, setLoading] = useState(false)
+   const[snackbar, setSnackBar] = useState({open:false, message:"", severity: 'info' })
+
+  const handleCloseSnackbar = () =>{
+  setSnackBar({...snackbar, open:false})
+  }
+   
    const handleGoogleSignIn = async () =>{
       try {
           const result = await signInWithPopup(auth ,provider)
           console.log(result.user)
+          router.push('/dashboard')
       } catch (error) {
           if(error.code === 'auth/popup-closed-by-user'){
             console.log("User closed the popup before completing the sign-in")
+            setSnackBar({
+              open: true,
+              message: "Popup closed before completing Sign-in",
+              severity: 'warning'
+            })
           } else{
             console.error("Sign in error", error)
-          }
+            setSnackBar({
+              open: true,
+              message: 'Sign-in failed. Please try again',
+              severity:'error'
+            })
+          } 
+          } finally{
+            setLoading(false)
       }
     }
 
@@ -76,9 +99,24 @@ export default function Home() {
        },
       }}
       >
-          Sign in WIth Google
+          {loading ? "Signing in..." : "Sign in with Google"}
       </Button>
       </Box>
+
+      <Snackbar
+      open={snackbar.open}
+      autoHideDuration={4000}
+      onClose={handleCloseSnackbar}
+      anchorOrigin={{vertical:'bottom', horizontal:'center'}}
+      >
+        <Alert
+        severity={snackbar.severity}
+        onClose={handleCloseSnackbar}
+        sx={{width: '100%'}}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
       </div>
     </div>
   );
