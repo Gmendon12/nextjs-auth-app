@@ -3,7 +3,7 @@ import {auth, provider} from './lib/firebase'
 import {signInWithPopup, getAuth, GoogleAuthProvider} from 'firebase/auth';
 import {Button, Box, Snackbar, Alert} from '@mui/material'
 import Image from 'next/image'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useRouter} from 'next/navigation';
 
 export default function Home() {
@@ -41,6 +41,15 @@ export default function Home() {
             setLoading(false)
       }
     }
+
+    useEffect(()=>{
+      const unsubscribe = auth.onAuthStateChanged(user =>{
+        if(user) {
+          router.push('/dashboard')
+        }
+      })
+      return () => unsubscribe()
+    },[])
 
   return (
     <div className='main'>
